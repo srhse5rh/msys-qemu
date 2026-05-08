@@ -1,0 +1,35 @@
+name: Build QEMU (Staging)
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            base-devel
+            git
+
+      - name: Build Package
+        shell: msys2 {0}
+        run: |
+          # makepkg-mingw handles resolving and installing all the 
+          # pacman depends and makedepends automatically (-s flag)
+          makepkg-mingw -sLf --noconfirm
+
+      - name: Upload Pacman Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: qemu-ucrt64-packages
+          path: "*.pkg.tar.zst"
