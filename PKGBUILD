@@ -13,7 +13,7 @@ arch=('any')
 mingw_arch=('ucrt64') # Restricted to ucrt64 for faster CI; add 'mingw64' 'clang64' etc. if needed
 license=('spdx:GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause AND MIT')
 url="https://qemu.org/"
-msys2_repository_url="https://gitlab.com/qemu-project/qemu"
+msys2_repository_url="https://github.com/qemu/qemu"
 
 makedepends=(
   "git"
