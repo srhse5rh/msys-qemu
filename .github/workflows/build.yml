@@ -24,6 +24,7 @@ jobs:
       - name: Build Package
         shell: msys2 {0}
         run: |
+          dos2unix PKGBUILD
           # makepkg-mingw handles resolving and installing all the 
           # pacman depends and makedepends automatically (-s flag)
           makepkg-mingw -sLf --noconfirm
