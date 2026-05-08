@@ -133,8 +133,7 @@ build() {
     --datadir=share/qemu \
     --localedir=share/locale \
     --mandir=share/man \
-    --docdir=share/doc/qemu \
-    --disable-download
+    --docdir=share/doc/qemu
 
   # Finally build
   make
